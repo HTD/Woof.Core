@@ -7,8 +7,8 @@
     <Authors>Adam Łyskawa, Kamil Marzec</Authors>
     <Company>CodeDog Ltd.</Company>
     <Description>.NET Standard extensions.
-Little code pearls, a part of what makes CodeDog special.
-Made to never reinvent the wheel and to keep simple things as simple and zen as possible.</Description>
+Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
+Little code pearls, a part of what makes CodeDog special.</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
     <PackageReleaseNotes>Removed DebgEx, NetEx, DataEx with dependencies - separate packages TBD.
 Added CommandLineArguments class.</PackageReleaseNotes>
