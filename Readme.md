@@ -2,7 +2,7 @@
 
 **.NET Framework** extensions created by **[CodeDog Ltd.](http://codedog.pl)**
 
-Distributed under [MIT License](https://en.wikipedia.org/wiki/MIT_License) (see [License.txt](License.txt)).
+Distributed under [MIT License](https://en.wikipedia.org/wiki/MIT_License).
 (c)2018 by CodeDog Ltd., All rights reserved.
 
 ---
@@ -30,14 +30,14 @@ WinForms is also faster and easier to develop for some particular cases.
 
 ### Namespaces
 
-| Namespace               | Description                                          |
-|:------------------------|:-----------------------------------------------------|
-| AssemblyEx              | Tools for dealing with current and other assemblies. |
-| ConsoleEx               | Advanced console tools.                              |
-| Core                    | Tools for .NET Core server projects.                 |
-| DeploymentEx            | Tools for building custom installers.                |
-| ProcessEx               | Advanced inter-process communication tools.          |
-| SystemEx                | Provides various information about computer system.  |
+| Namespace               | Description                                           |
+|:------------------------|:------------------------------------------------------|
+| AssemblyEx              | Tools for dealing with current and other assemblies.  |
+| ConsoleEx               | Advanced console tools.                               |
+| Core                    | Tools for .NET Core server projects, universal tools. |
+| DeploymentEx            | Tools for building custom installers.                 |
+| ProcessEx               | Advanced inter-process communication tools.           |
+| SystemEx                | Provides various information about computer system.   |
 
 ## Usage
 

@@ -17,7 +17,7 @@ namespace Woof.Command {
         /// <summary>
         /// Gets the command arguments processed.
         /// </summary>
-        public CommandLineArguments Arguments { get; private set; }
+        public CommandLineArgumentsEx Arguments { get; private set; }
 
         /// <summary>
         /// Gets or sets the display console color of the command line arguments.
@@ -447,7 +447,7 @@ namespace Woof.Command {
         private void Empty() {
             _Text = "";
             Command = String.Empty;
-            Arguments = new CommandLineArguments();
+            Arguments = new CommandLineArgumentsEx();
             Cursor = 0;
         }
 
@@ -485,7 +485,7 @@ namespace Woof.Command {
                 }
             }
             Command = _Parts_U.FirstOrDefault();
-            Arguments = new CommandLineArguments(_Parts_U.Skip(1));
+            Arguments = new CommandLineArgumentsEx(_Parts_U.Skip(1));
         }
 
         #endregion

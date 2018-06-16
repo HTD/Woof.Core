@@ -9,7 +9,7 @@ namespace Woof.Command {
     /// <summary>
     /// Command line arguments processing class.
     /// </summary>
-    public class CommandLineArguments {
+    public class CommandLineArgumentsEx {
         
         /// <summary>
         /// Gets a value indicating whether the command line is empty.
@@ -41,7 +41,7 @@ namespace Woof.Command {
         /// </summary>
         /// <param name="args">Command line arguments.</param>
         /// <param name="markedAsOptions">Optional switches to be treated as options separated with '|', ',' or ' ' character.</param>
-        public CommandLineArguments(IEnumerable<string> args = null, string markedAsOptions = null) {
+        public CommandLineArgumentsEx(IEnumerable<string> args = null, string markedAsOptions = null) {
             Raw = args?.ToArray() ?? new string[] { };
             string[] marked = markedAsOptions != null ? markedAsOptions.Split('|', ',', ' ') : new string[] { };
             IsEmpty = !Raw.Any();
