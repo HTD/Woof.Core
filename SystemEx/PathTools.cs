@@ -2,46 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Principal;
 
-namespace Woof.Automation {
+namespace Woof.SystemEx {
 
     /// <summary>
     /// Tools related to system environment paths.
     /// </summary>
     public static class PathTools {
-
-        #region Current process environment
-
-        /// <summary>
-        /// Gets the automatic <see cref="EnvironmentVariableTarget"/> depending on whether current user has administrative privileges.
-        /// </summary>
-        public static EnvironmentVariableTarget AutoTarget {
-            get {
-                using (var identity = WindowsIdentity.GetCurrent())
-                    return new WindowsPrincipal(identity).IsInRole(WindowsBuiltInRole.Administrator)
-                        ? EnvironmentVariableTarget.Machine
-                        : EnvironmentVariableTarget.User;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the "Program Files" folder will be x86 folder.
-        /// (True for programs compiled with "Prefer 32-bit" option set).
-        /// </summary>
-        public static bool IsX86Target => Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles).Contains("x86");
-
-        /// <summary>
-        /// Gets program files folder depending on target type (machine / user).
-        /// </summary>
-        /// <param name="target">Environment location.</param>
-        /// <returns>Hopefully writeable directory to store new programs in.</returns>
-        public static string GetProgramFilesDirectory(EnvironmentVariableTarget target) =>
-            target == EnvironmentVariableTarget.Machine
-                ? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)
-                : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs");
-
-        #endregion
 
         #region Environment PATH manipulation
 
@@ -138,7 +105,7 @@ namespace Woof.Automation {
         private const string PATH = "PATH";
         private const StringComparison ICCN = StringComparison.OrdinalIgnoreCase;
         private static readonly StringComparer ICCR = StringComparer.OrdinalIgnoreCase;
-        private static readonly char PATH_SEPARATOR = System.IO.Path.PathSeparator;
+        private static readonly char PATH_SEPARATOR = Path.PathSeparator;
 
         #endregion
 

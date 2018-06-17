@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
-using Woof.Core.Html;
 
 namespace Woof.Core {
 

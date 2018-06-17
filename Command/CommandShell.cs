@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Woof.Automation;
+using Woof.SystemEx;
 
 namespace Woof.Command {
 

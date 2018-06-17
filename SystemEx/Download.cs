@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net;
-using Woof.SystemEx;
 
-namespace Woof.Automation {
+namespace Woof.SystemEx {
 
     /// <summary>
     /// HTTP responsive file downloader.

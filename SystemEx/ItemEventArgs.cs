@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Woof.Automation {
+namespace Woof.SystemEx {
 
     /// <summary>
     /// Event arguments for reporting item operations.

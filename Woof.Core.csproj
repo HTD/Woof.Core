@@ -10,10 +10,10 @@
 Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
 Little code pearls, a part of what makes CodeDog special.</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
-    <PackageReleaseNotes>Removed ProcessEx and SecurityEx to reduce dependencies. Moved to Woof.IPC and Woof.Security packages.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
-    <Version>1.0.3</Version>
+    <PackageReleaseNotes>Removed Html, some deployment tools and dependencies.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
+    <Version>1.0.4</Version>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
@@ -33,12 +33,6 @@ Little code pearls, a part of what makes CodeDog special.</Description>
     <Compile Remove="Tests\**" />
     <EmbeddedResource Remove="Tests\**" />
     <None Remove="Tests\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.IO.Pipes.AccessControl" Version="4.5.0" />
-    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.5.0" />
-    <PackageReference Include="System.Security.Principal.Windows" Version="4.5.0" />
   </ItemGroup>
 
 </Project>
