@@ -4,16 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Woof</RootNamespace>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Authors>Adam Łyskawa, Kamil Marzec</Authors>
+    <Authors>Adam Łyskawa</Authors>
     <Company>CodeDog Ltd.</Company>
     <Description>.NET Standard extensions.
 Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
 Little code pearls, a part of what makes CodeDog special.</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
-    <PackageReleaseNotes>XMLDOC built! Documentation completed.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
-    <Version>1.0.6</Version>
+    <PackageReleaseNotes>Because indexing of the previous version like failed... crashed... frozen...</PackageReleaseNotes>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <FileVersion>1.0.7.0</FileVersion>
+    <Version>1.0.7</Version>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
