@@ -2,6 +2,9 @@
 
 namespace Woof.ConsoleEx {
 
+    /// <summary>
+    /// A special object allowing to display dots by one thread, while the other already displayed something else on the console.
+    /// </summary>
     public class ConsoleProgress {
 
         /// <summary>

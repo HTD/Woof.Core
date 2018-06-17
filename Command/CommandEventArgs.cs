@@ -7,6 +7,9 @@ namespace Woof.Command {
     /// </summary>
     public class CommandEventArgs : EventArgs {
 
+        /// <summary>
+        /// Gets the associated command line instance.
+        /// </summary>
         public CommandLine CommandLine { get; }
 
         /// <summary>

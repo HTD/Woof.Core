@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Woof.TextEx {
 
+    /// <summary>
+    /// String extensions extending pattern matching, search and replace operations.
+    /// </summary>
     public static class StringExtensions {
 
         /// <summary>
@@ -47,6 +50,7 @@ namespace Woof.TextEx {
         /// Replaces special XML / HTML characters with entities, with optional HTML replacements.
         /// </summary>
         /// <param name="text">Text containing special HTML characters or meaningful whitespace.</param>
+        /// <param name="options">See <see cref="HtmlParsingFlags"/>.</param>
         /// <returns>XML / HTML text.</returns>
         public static string ParseXml(this string text, HtmlParsingFlags options = HtmlParsingFlags.None) {
             if (text == null) return null;
@@ -71,6 +75,7 @@ namespace Woof.TextEx {
         /// </summary>
         /// <param name="text">Source text.</param>
         /// <param name="searchPattern">Search pattern using '%' wildcard.</param>
+        /// <param name="replacePattern">A pattern to replace matched fragments.</param>
         /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>Replaced text.</returns>
         public static string PatternReplace(this string text, string searchPattern, string replacePattern, StringComparison comparisonType = StringComparison.OrdinalIgnoreCase)

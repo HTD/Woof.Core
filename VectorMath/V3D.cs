@@ -101,6 +101,8 @@ namespace Woof.VectorMath {
 
         #region Operators
 
+        #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
         public static bool operator ==(V3D a, V3D b) => a.X == b.X && a.Y == b.Y && a.Z == b.Z;
 
         public static bool operator !=(V3D a, V3D b) => a.X != b.X || a.Y != b.Y || a.Z != b.Z;
@@ -128,6 +130,8 @@ namespace Woof.VectorMath {
         public static V3D operator /(V3D a, double k) => new V3D(a.X / k, a.Y / k, a.Z / k);
 
         public static V3D operator /(double k, V3D a) => new V3D(k / a.X, k / a.Y, k / a.Z);
+
+        #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         #endregion
 

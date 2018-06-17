@@ -121,7 +121,8 @@ namespace Woof.ConsoleEx {
         /// <summary>
         /// Displays one or more debug messages on console after initial "DEBUG: ", doesn't block the calling thread.
         /// </summary>
-        /// <param name="messages"></param>
+        /// <param name="serverity">0: debug, 1: warning, 2: error.</param>
+        /// <param name="messages">Messages to log.</param>
         public static void LogDebug(int serverity, params string[] messages) {
             var timestamp = DateTime.Now;
             string headerText = null;
@@ -137,29 +138,19 @@ namespace Woof.ConsoleEx {
             DebugLogUpdate();
         }
 
-
-        ///// <summary>
-        ///// Displays one or more error messages on console after initial "ERROR: ", doesn't block the calling thread.
-        ///// </summary>
-        ///// <param name="messages"></param>
-        //public static void LogError(params string[] messages) {
-
-        //    Console.Write(IsHexColorEnabled ? $"`077`{DateTime.Now:HH:mm:ss.fff}` `f00`ERROR:` " : $"{DateTime.Now:HH:mm:ss.fff} ERROR: ");
-        //        foreach (var message in messages) Console.WriteLine(message);
-
-        //}
-
-
-        ///// <summary>
-        ///// Displays one or more error messages on console after initial "WARNING: ", doesn't block the calling thread.
-        ///// </summary>
-        ///// <param name="messages"></param>
-        //public static void LogWarning(params string[] messages) => Task.Run(() => {
-        //    lock (Console.Out) {
-        //        Console.Write(IsHexColorEnabled ? $"`077`{DateTime.Now:HH:mm:ss.fff}` `ff0`WARNING:` " : $"{DateTime.Now:HH:mm:ss.fff} WARNING: ");
-        //        foreach (var message in messages) Console.WriteLine(message);
-        //    }
-        //});
+        /// <summary>
+        /// Displays one or more debug messages on console after initial "DEBUG: ", doesn't block the calling thread.
+        /// </summary>
+        /// <param name="severity">Severity code: 'I' for debug, 'W' for warning, 'E' for error.</param>
+        /// <param name="messages">Messages to log.</param>
+        public static void LogDebug(char severity, params string[] messages) { 
+            switch (severity) {
+                case 'I': LogDebug(0, messages); return;
+                case 'W': LogDebug(1, messages); return;
+                case 'E': LogDebug(2, messages); return;
+                default: throw new ArgumentException("severity");
+            }
+        }
 
         /// <summary>
         /// Displays header message.

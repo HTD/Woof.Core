@@ -372,6 +372,7 @@ namespace Woof.Command {
         /// Blocks current thread until external process exits.
         /// </summary>
         /// <param name="command">Command name or file name.</param>
+        /// <param name="redirection">True to redirect standard output and standard error, if set true, the output from the process will be intercepted and own, colored output will occur.</param>
         /// <param name="arguments">Arguments to pass.</param>
         public void Execute(string command, bool redirection = true, params string[] arguments) {
             var currentForeground = Console.ForegroundColor;

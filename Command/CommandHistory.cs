@@ -63,10 +63,21 @@ namespace Woof.Command {
 
         #region Constructors
 
+        /// <summary>
+        /// Creates empty <see cref="CommandHistory"/>.
+        /// </summary>
         public CommandHistory() { }
 
+        /// <summary>
+        /// Creates a command history lines collection from a string collection.
+        /// </summary>
+        /// <param name="items">A string collection to create the history list from.</param>
         public CommandHistory(IEnumerable<string> items) => Items = items != null ? new List<string>(items) : new List<string>();
 
+        /// <summary>
+        /// Creates a command history lines collection from its binary serialized representation.
+        /// </summary>
+        /// <param name="serialized">Serialized history data.</param>
         public CommandHistory(byte[] serialized) => Serialized = serialized;
 
         #endregion

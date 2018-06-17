@@ -87,7 +87,7 @@ namespace Woof.TextEx {
         #endregion
 
         /// <summary>
-        /// Reads CSV text into collection of predefined records.
+        /// Reads CSV text into a collection of predefined records.
         /// </summary>
         /// <typeparam name="T">Record type.</typeparam>
         /// <param name="text">CSV text.</param>
@@ -107,6 +107,11 @@ namespace Woof.TextEx {
             }
         }
 
+        /// <summary>
+        /// Reads CSV text into a collecton of <see cref="CsvRowData"/> rows.
+        /// </summary>
+        /// <param name="text">CSV text.</param>
+        /// <returns>Collection of rows.</returns>
         public IEnumerable<CsvRowData> Read(string text) {
             var index = 0;
             var skip = HasHeader;
@@ -143,6 +148,11 @@ namespace Woof.TextEx {
             using (var reader = new StreamReader(stream, Encoding, true)) return Read<T>(reader.ReadToEnd());
         }
 
+        /// <summary>
+        /// Reads CSV file into a collecton of <see cref="CsvRowData"/> rows.
+        /// </summary>
+        /// <param name="path">A path to the CSV file.</param>
+        /// <returns></returns>
         public IEnumerable<CsvRowData> ReadFile(string path) {
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(stream, Encoding, true)) return Read(reader.ReadToEnd());
@@ -150,21 +160,28 @@ namespace Woof.TextEx {
 
 
         /// <summary>
-        /// Reads all CSV files in a directory using configured encoding into collection of predefined records.
+        /// Reads all matchin files in a directory to one collection of predefined records.
         /// </summary>
         /// <typeparam name="T">Record type.</typeparam>
-        /// <param name="path">Path to directory containing CSV files.</param>
+        /// <param name="directory">Directory path.</param>
         /// <param name="searchPattern">Optional search pattern to match specified extensions.</param>
         /// <param name="searchOption">Search option.</param>
         /// <returns>Collection of records.</returns>
-        public IEnumerable<T> ReadDirectory<T>(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly) where T : new() {
-            foreach (var file in Directory.EnumerateFiles(path, searchPattern, searchOption)) {
+        public IEnumerable<T> ReadDirectory<T>(string directory, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly) where T : new() {
+            foreach (var file in Directory.EnumerateFiles(directory, searchPattern, searchOption)) {
                 foreach (var record in ReadFile<T>(file)) yield return record;
             }
         }
 
-        public IEnumerable<CsvRowData> ReadDirectory(string path, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly) {
-            foreach (var file in Directory.EnumerateFiles(path, searchPattern, searchOption)) {
+        /// <summary>
+        /// Reads all matching files in a directory to one collection of <see cref="CsvRowData"/>.
+        /// </summary>
+        /// <param name="directory">Directory path.</param>
+        /// <param name="searchPattern">Search pattern, default "*" for all files.</param>
+        /// <param name="searchOption">Allows recursive search, see <see cref="SearchOption"/>.</param>
+        /// <returns>A collection of rows.</returns>
+        public IEnumerable<CsvRowData> ReadDirectory(string directory, string searchPattern = "*", SearchOption searchOption = SearchOption.TopDirectoryOnly) {
+            foreach (var file in Directory.EnumerateFiles(directory, searchPattern, searchOption)) {
                 foreach (var record in ReadFile(file)) yield return record;
             }
         }
@@ -239,14 +256,32 @@ namespace Woof.TextEx {
 
     }
 
+    /// <summary>
+    /// Contains data of the CSV data row.
+    /// </summary>
     public class CsvRowData {
 
+        /// <summary>
+        /// Gets the document line index.
+        /// </summary>
         public int LineIndex { get; }
 
+        /// <summary>
+        /// Gets the cells array.
+        /// </summary>
         public string[] Cells { get; }
 
+        /// <summary>
+        /// Gets the original string of the row.
+        /// </summary>
         public string RawText { get; }
 
+        /// <summary>
+        /// Creates a CSV row data object.
+        /// </summary>
+        /// <param name="lineIndex">Document line index.</param>
+        /// <param name="cells">Cells array.</param>
+        /// <param name="rawText">Original string before splitting.</param>
         public CsvRowData(int lineIndex, string[] cells, string rawText) {
             LineIndex = lineIndex;
             Cells = cells;

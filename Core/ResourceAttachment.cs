@@ -15,7 +15,7 @@ namespace Woof.Core {
         /// <param name="assembly">Containing assembly.</param>
         /// <param name="name">Resource name.</param>
         /// <param name="contentId">Content identifier.</param>
-        /// 
+        /// <param name="disposition">Content disposition: "attachment" or "inline".</param>
         public ResourceAttachment(Assembly assembly, string name, string contentId = null, string disposition = null)
             : base(new Resource(assembly, name).Stream, new ContentType(MimeMapping.GetMimeMapping(name))) {
             ContentDisposition.DispositionType = disposition ?? DispositionTypeNames.Attachment;
@@ -27,6 +27,7 @@ namespace Woof.Core {
         /// </summary>
         /// <param name="name">Resource name.</param>
         /// <param name="contentId">Content identifier.</param>
+        /// <param name="disposition">Content disposition: "attachment" or "inline".</param>
         public ResourceAttachment(string name, string contentId = null, string disposition = null) : this(Assembly.GetEntryAssembly(), name, contentId, disposition) { }
 
     }

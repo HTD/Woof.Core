@@ -91,6 +91,8 @@ namespace Woof.VectorMath {
 
         #region Operators
 
+        #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
         public static bool operator ==(V2D a, V2D b) => a.X == b.X && a.Y == b.Y;
 
         public static bool operator !=(V2D a, V2D b) => a.X != b.X || a.Y != b.Y;
@@ -120,6 +122,8 @@ namespace Woof.VectorMath {
         public static V2D operator /(double k, V2D a) => new V2D(k / a.X, k / a.Y);
 
         public static implicit operator PointF(V2D v) => new PointF(-(float)v.X, -(float)v.Y); public static implicit operator V2D(PointF p) => new V2D(-p.X, -p.Y);
+
+        #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         #endregion
 

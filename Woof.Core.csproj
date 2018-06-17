@@ -3,21 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Woof</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>Adam Łyskawa, Kamil Marzec</Authors>
     <Company>CodeDog Ltd.</Company>
     <Description>.NET Standard extensions.
 Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
 Little code pearls, a part of what makes CodeDog special.</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
-    <PackageReleaseNotes>Removed Html, some deployment tools and dependencies.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
-    <Version>1.0.4</Version>
+    <PackageReleaseNotes>XMLDOC built! Documentation completed.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
+    <Version>1.0.6</Version>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
     <PackageId>Woof.Core</PackageId>
+    <Product>Woof.Core</Product>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +29,7 @@ Little code pearls, a part of what makes CodeDog special.</Description>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\netstandard2.0\Woof.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -250,6 +250,9 @@ namespace Woof.Command {
             _LastLength = _Text.Length;
         }
 
+        /// <summary>
+        /// Updates the text of the command line.
+        /// </summary>
         public void UpdateText() {
             if (!IsRendered) return;
             var l0 = _LastLength;
@@ -390,6 +393,7 @@ namespace Woof.Command {
         /// Quotes (both single and double) prevent space from being a separator.
         /// </summary>
         /// <param name="line">A line to split.</param>
+        /// <param name="leaveQuotes">If set true, quoted parts will still contain quotes.</param>
         /// <returns>Parts.</returns>
         public static string[] Split(string line, bool leaveQuotes = false) {
             var result = new List<string>();
@@ -492,8 +496,16 @@ namespace Woof.Command {
 
         #region Conversions
 
+        /// <summary>
+        /// Implicit <see cref="string"/> conversion, just returns the <see cref="CommandLine.Text"/>.
+        /// </summary>
+        /// <param name="l"></param>
         public static implicit operator string(CommandLine l) => l.Text;
 
+        /// <summary>
+        /// Implicit <see cref="CommandLine"/> conversion, creates new <see cref="CommandLine"/> from <see cref="string"/>.
+        /// </summary>
+        /// <param name="s"></param>
         public static implicit operator CommandLine(string s) => new CommandLine(s);
 
         #endregion

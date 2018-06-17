@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Woof.Command {
 
+    /// <summary>
+    /// AutoComplete list module for <see cref="CommandShell"/>.
+    /// </summary>
     public class CommandAutoCompleteList : IEnumerable<string> {
 
         #region Properties
@@ -70,6 +73,7 @@ namespace Woof.Command {
         /// Filters the list by the matching start string.
         /// </summary>
         /// <param name="start">Common start for the completions.</param>
+        /// <param name="includeCommands">Set true to include internal commands.</param>
         /// <returns>Offset where the completion match or -1 when nothing matches.</returns>
         public int Match(string start, bool includeCommands = false) {
             MatchingPath = null;
@@ -106,6 +110,7 @@ namespace Woof.Command {
         /// Reloads file system entries for the directory, adds commands to the list.
         /// </summary>
         /// <param name="dir">Directory to feed the items list.</param>
+        /// <param name="includeCommands">Set true to include internal commands.</param>
         private void Reload(string dir = ".", bool includeCommands = false) {
             if (dir != ".") includeCommands = false;
             string trim(string _path, string _dir) {
@@ -172,8 +177,16 @@ namespace Woof.Command {
 
         #region IEnumerable implementation
 
+        /// <summary>
+        /// Enumerats string items.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<string> GetEnumerator() => ((IEnumerable<string>)Matching).GetEnumerator();
 
+        /// <summary>
+        /// Enumerates items.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<string>)Matching).GetEnumerator();
 
         #endregion
