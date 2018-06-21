@@ -113,6 +113,23 @@ namespace Woof.TextEx {
             return text;
         }
 
+        /// <summary>
+        /// Converts string identifier from PascalCase to camelCase.
+        /// </summary>
+        /// <param name="name">String identifier.</param>
+        /// <returns>camelCase identifier.</returns>
+        public static string ToCamelCase(this string name) => String.IsNullOrEmpty(name) ? name : name[0].ToString().ToLower() + name.Substring(1);
+
+        /// <summary>
+        /// Converts string identifier from camelCase to PascalCase.
+        /// </summary>
+        /// <param name="name">String identifier.</param>
+        /// <returns>PascalCase identifier.</returns>
+        public static string ToPascalCase(this string name) => String.IsNullOrEmpty(name) ? name : name[0].ToString().ToUpper() + name.Substring(1);
+
+        /// <summary>
+        /// A regular expression matching any line end sequence (Windows, Linux and Mac).
+        /// </summary>
         private static readonly Regex RxLineEnds = new Regex(@"\r?\n", RegexOptions.Compiled | RegexOptions.Singleline);
 
     }

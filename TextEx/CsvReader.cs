@@ -158,7 +158,6 @@ namespace Woof.TextEx {
             using (var reader = new StreamReader(stream, Encoding, true)) return Read(reader.ReadToEnd());
         }
 
-
         /// <summary>
         /// Reads all matchin files in a directory to one collection of predefined records.
         /// </summary>

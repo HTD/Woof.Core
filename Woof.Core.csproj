@@ -10,10 +10,10 @@
 Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
 Little code pearls, a part of what makes CodeDog special.</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
-    <PackageReleaseNotes>Because indexing of the previous version like failed... crashed... frozen...</PackageReleaseNotes>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
-    <Version>1.0.7</Version>
+    <PackageReleaseNotes>ADD: String.ToCamelCase(), String.ToPascalCase() extensions.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
+    <FileVersion>1.0.8.0</FileVersion>
+    <Version>1.0.8</Version>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
