@@ -8,7 +8,16 @@ using Xunit;
 public class UnitTests {
 
     [Fact]
-    public void ResourceAttachmentTest() {
+    public void ResourceExistence() {
+        var assembly = GetType().Assembly;
+        var rightPath = "Resources\\Logo.png";
+        var wrongPath = "Nowhere\\Logo.png";
+        Assert.True(Resource.Exists(assembly, rightPath));
+        Assert.False(Resource.Exists(assembly, wrongPath));
+    }
+
+    [Fact]
+    public void ResourceAttachment() {
         using (var client = new SmtpClient("smtp.gmail.com", 587) {
             EnableSsl = true,
             Credentials = new System.Net.NetworkCredential("beta63465@gmail.com", "v6GvLcF56zVWAfOFkvqP") // throwaway account, but please...

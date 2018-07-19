@@ -41,28 +41,53 @@ namespace Woof.Core {
         /// Creates embedded resource reference.
         /// </summary>
         /// <param name="assembly">Assembly to load the resource from.</param>
-        /// <param name="referencePath">Relative path to the project file.</param>
+        /// <param name="path">Relative path to the project file.</param>
         /// <exception cref="System.IO.FileNotFoundException">Thrown when embedded resource name could not be matched.</exception>
         /// <remarks>
         /// Only the last part of the path is matched, so specify the fullest patch which identifies the correct file.
         /// </remarks>
-        public Resource(Assembly assembly, string referencePath) {
+        public Resource(Assembly assembly, string path) {
             AssemblyReference = assembly;
-            ReferencePath = referencePath;
-            var pattern = ReferencePath.Replace('/', '.').Replace('\\', '.');
-            AssemblyPath = AssemblyReference.GetManifestResourceNames().FirstOrDefault(i => i.EndsWith(pattern));
+            ReferencePath = path;
+            AssemblyPath = GetAssemblyPath(AssemblyReference, ReferencePath);
             if (AssemblyPath == null) throw new FileNotFoundException("Embedded resource not found.", ReferencePath);
         }
 
         /// <summary>
         /// Creates embedded resource reference.
         /// </summary>
-        /// <param name="referencePath">Relative path to the project file.</param>
+        /// <param name="path">Relative path to the project file.</param>
         /// <exception cref="System.IO.FileNotFoundException">Thrown when embedded resource name could not be matched.</exception>
         /// <remarks>
         /// Only the last part of the path is matched, so specify the fullest patch which identifies the correct file.
         /// </remarks>
-        public Resource(string referencePath) : this(Assembly.GetEntryAssembly(), referencePath) { }
+        public Resource(string path) : this(Assembly.GetEntryAssembly(), path) { }
+
+        /// <summary>
+        /// Checks if a resource specified with the path exists within given assembly.
+        /// </summary>
+        /// <param name="assembly">Assembly to test.</param>
+        /// <param name="path">Relative path to the project file.</param>
+        /// <returns>True if the resource exists.</returns>
+        public static bool Exists(Assembly assembly, string path) => GetAssemblyPath(assembly, path) != null;
+
+        /// <summary>
+        /// Checks if a resource specified with the path exists within entry assembly (usually main exe).
+        /// </summary>
+        /// <param name="path">Relative path to the project file.</param>
+        /// <returns>True if the resource exists.</returns>
+        public static bool Exists(string path) => Exists(Assembly.GetEntryAssembly(), path);
+
+        /// <summary>
+        /// Gets the path to the resource stream.
+        /// </summary>
+        /// <param name="assembly">Assembly to test.</param>
+        /// <param name="path">Relative path to the project file.</param>
+        /// <returns>Assembly path.</returns>
+        private static string GetAssemblyPath(Assembly assembly, string path) {
+            var pattern = path.Replace('/', '.').Replace('\\', '.');
+            return assembly.GetManifestResourceNames().FirstOrDefault(i => i.EndsWith(pattern));
+        }
 
         #region Private data
 
