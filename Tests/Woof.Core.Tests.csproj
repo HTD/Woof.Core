@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Resources\logo.png" />
+    <None Remove="Resources\Test.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Logo.png" />
+    <EmbeddedResource Include="Resources\Test.csv" />
   </ItemGroup>
 
   <ItemGroup>

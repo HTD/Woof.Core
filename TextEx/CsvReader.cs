@@ -69,9 +69,14 @@ namespace Woof.TextEx {
         public string RawTextPropertyName { get; set; } = "RawText";
 
         /// <summary>
+        /// Sets optional function to process a CSV line before it's splitted into cells.
+        /// </summary>
+        public LinePreprocessorDelegate LinePreprocessor { get; set; }
+
+        /// <summary>
         /// Gets or sets a function for filtering the rows.
         /// </summary>
-        public Func<int, string[], FilterAction> RowFilter { get; set; }
+        public RowFilterDelegate RowFilter { get; set; }
 
         /// <summary>
         /// Gets the splitter used to split CSV text into rows and cells.
@@ -97,7 +102,7 @@ namespace Woof.TextEx {
             var skip = HasHeader;
             foreach (var line in Splitter.GetLines(text)) {
                 if (skip) { skip = false; continue; }
-                var cells = Splitter.GetCells(line).ToArray();
+                var cells = Splitter.GetCells(LinePreprocessor == null ? line : LinePreprocessor(line)).ToArray();
                 if (RowFilter != null) {
                     var action = RowFilter(index, cells);
                     if (action == FilterAction.Reject) continue;
@@ -117,7 +122,7 @@ namespace Woof.TextEx {
             var skip = HasHeader;
             foreach (var line in Splitter.GetLines(text)) {
                 if (skip) { skip = false; continue; }
-                var cells = Splitter.GetCells(line).ToArray();
+                var cells = Splitter.GetCells(LinePreprocessor == null ? line : LinePreprocessor(line)).ToArray();
                 if (RowFilter != null) {
                     var action = RowFilter(index, cells);
                     if (action == FilterAction.Reject) continue;
@@ -307,6 +312,18 @@ namespace Woof.TextEx {
         Break
     }
 
+    /// <summary>
+    /// Line pre-processor function type.
+    /// </summary>
+    /// <param name="raw">Raw line text.</param>
+    public delegate string LinePreprocessorDelegate(string raw);
 
+    /// <summary>
+    /// Row filter function type.
+    /// </summary>
+    /// <param name="lineIndex">The index of the processed line.</param>
+    /// <param name="cells">Cells after splitting.</param>
+    /// <returns>What to do with the row, as one of <see cref="FilterAction"/> enumeration.</returns>
+    public delegate FilterAction RowFilterDelegate(int lineIndex, string[] cells);
 
 }

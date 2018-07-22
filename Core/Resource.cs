@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Woof.Core {
@@ -62,6 +64,25 @@ namespace Woof.Core {
         /// Only the last part of the path is matched, so specify the fullest patch which identifies the correct file.
         /// </remarks>
         public Resource(string path) : this(Assembly.GetEntryAssembly(), path) { }
+
+        /// <summary>
+        /// Enumerates all resource paths matching the specified pattern within given assembly.
+        /// </summary>
+        /// <param name="assembly">Assembly to test.</param>
+        /// <param name="pattern">Wildcard pattern.</param>
+        /// <returns>A collection of matching paths.</returns>
+        public static IEnumerable<string> Enumerate(Assembly assembly, string pattern = "*") {
+            if (pattern == "*") return assembly.GetManifestResourceNames();
+            var regex = new Regex(Regex.Escape(pattern.Replace('/', '.').Replace('\\', '.')).Replace("\\?", ".").Replace("\\*", ".*") + "$");
+            return assembly.GetManifestResourceNames().Where(i => regex.IsMatch(i));
+        }
+
+        /// <summary>
+        /// Enumerates all resource paths matching the specified pattern within entry assembly (usually main exe).
+        /// </summary>
+        /// <param name="pattern">Wildcard pattern.</param>
+        /// <returns>A collection of matching paths.</returns>
+        public static IEnumerable<string> Enumerate(string pattern = "*") => Enumerate(Assembly.GetEntryAssembly(), pattern);
 
         /// <summary>
         /// Checks if a resource specified with the path exists within given assembly.
