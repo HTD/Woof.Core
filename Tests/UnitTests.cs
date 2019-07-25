@@ -49,32 +49,6 @@ public class UnitTests {
         }
     }
 
-    // FIXME: Move to Woof.Text unit tests.
-    //[/*Fun*/Fact]
-    //public void CsvReader() {
-    //    var assembly = GetType().Assembly;
-    //    string[] specimen1 = null;
-    //    string[] specimen2 = null;
-    //    {
-    //        var reader = new CsvReader { HasHeader = true };
-    //        reader.LinePreprocessor = new LinePreprocessorDelegate((raw) => {
-    //            var p1 = raw.IndexOf(',') + 1;
-    //            var p2 = raw.IndexOf(',', p1) + 2;
-    //            var p3 = raw.LastIndexOf('|');
-    //            return raw.Substring(0, p2) + raw.Substring(p2, p3 - p2 + 1).Replace("\"", "") + raw.Substring(p3 + 1);
-    //        });
-    //        var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
-    //        specimen1 = rows[1].Cells;
-    //    }
-    //    {
-    //        var reader = new CsvReader { HasHeader = true };
-    //        var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
-    //        specimen2 = rows[1].Cells;
-    //    }
-    //    Assert.Equal(6, specimen1.Length);
-    //    Assert.Equal(9, specimen2.Length);
-    //}
-
     [/*Fun*/Fact]
     public void ResourceExistence() {
         var assembly = GetType().Assembly;
