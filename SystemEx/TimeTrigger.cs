@@ -18,11 +18,11 @@ namespace Woof.SystemEx {
         /// <para>Gets or sets time schedule as string.</para>
         /// Accepted formats:
         /// <list type="bullet">
-        /// <item><term>12:34</term><description> - daily at 12:34, </description></item>
-        /// <item><term>5s</term><description> - every 5 seconds, </description></item>
-        /// <item><term>0@12:34</term><description> - at 12:34 every Sunday, </description></item>
-        /// <item><term>05@12:34</term><description> - at 12:34 every 5th day of the month, </description></item>
-        /// <item><term>LD@12:34</term><decription> - at 12:34 every last day of the month.</decription></item>
+        /// <item><term>12:34</term><description> - daily at 12:34,</description></item>
+        /// <item><term>5s</term><description>- every 5 seconds,</description></item>
+        /// <item><term>0@12:34</term><description>- at 12:34 every Sunday,</description></item>
+        /// <item><term>05@12:34</term><description>- at 12:34 every 5th day of the month,</description></item>
+        /// <item><term>LD@12:34</term><description>- at 12:34 every 5th day of the month,</description></item>
         /// </list>
         /// </summary>
         public string Schedule {

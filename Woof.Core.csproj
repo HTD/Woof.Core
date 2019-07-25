@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,20 +6,23 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>Adam Łyskawa</Authors>
     <Company>CodeDog Ltd.</Company>
-    <Description>.NET Standard extensions.
-Made to never reinvent the wheel and to keep simple things as simple and zen as possible.
-Little code pearls, a part of what makes CodeDog special.</Description>
+    <Description>.NET Standard extensions:
+Algorithms: ArrayFisherYates, HashCode, Fast PRNG-s
+AssemblyEx: AssemblyInfo.
+Core: ApplicationDirectory, ExpandoObjectExtensions, MimeMapping, Resource, ResourceAttachment, XTemplate
+SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, DiagnosticStream, Download, ExceptionEventArgs, IniFile, ItemEventArgs, Paged, PathTools, PercentEventArgs, TimeTrigger</Description>
     <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
-    <PackageReleaseNotes>ADD: CsvReader.LinePreprocessor property.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.11.0</AssemblyVersion>
-    <FileVersion>1.0.11.0</FileVersion>
-    <Version>1.0.11</Version>
-    <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
+    <PackageReleaseNotes>REMOVE: Command, Console, VectorMath, Text - moved to separate packages.</PackageReleaseNotes>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
     <PackageId>Woof.Core</PackageId>
     <Product>Woof.Core</Product>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,6 +33,7 @@ Little code pearls, a part of what makes CodeDog special.</Description>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>bin\Release\netstandard2.0\Woof.Core.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>

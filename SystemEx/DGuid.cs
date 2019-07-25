@@ -12,7 +12,7 @@ namespace Woof.SystemEx {
         /// <summary>
         /// Default namespace for this class of GUIDs.
         /// </summary>
-        private static Guid DefaultNamespace = new Guid("3ae7c92c-f7a4-4750-8971-4ec7aae78638");
+        private static readonly Guid DefaultNamespace = new Guid("3ae7c92c-f7a4-4750-8971-4ec7aae78638");
 
         /// <summary>
         /// Gets or sets actual namespace GUID.
@@ -23,7 +23,7 @@ namespace Woof.SystemEx {
         /// <summary>
         /// Deterministic guid value.
         /// </summary>
-        private Guid DG;
+        private readonly Guid DG;
 
         /// <summary>
         /// Creates deterministic UUID v5 from any byte buffer.

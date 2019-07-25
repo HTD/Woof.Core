@@ -1,40 +1,81 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using Woof.Core;
-using Woof.TextEx;
 using Xunit;
+using A = Woof.Algorithms;
 
 public class UnitTests {
 
-    [Fact]
-    public void CsvReader() {
-        var assembly = GetType().Assembly;
-        string[] specimen1 = null;
-        string[] specimen2 = null;
+    [/*Fun*/Fact]
+    public void HashCodes() {
+        var rng = new Random();
+        char randomChar() => (char)rng.Next(32, 126);
+        string randomString() {
+            var _b = new StringBuilder();
+            for (int i = 0, n = rng.Next(1, 16); i < n; i++) _b.Append(randomChar());
+            return _b.ToString();
+        }
+        string[] randomStringArray(int count) {
+            var list = new List<string>();
+            for (int i = 0; i < count; i++) list.Add(randomString());
+            return list.ToArray();
+        }
+        static string[] copyStringArray(string[] original) => original.Select(i => i).ToArray();
         {
-            var reader = new CsvReader { HasHeader = true };
-            reader.LinePreprocessor = new LinePreprocessorDelegate((raw) => {
-                var p1 = raw.IndexOf(',') + 1;
-                var p2 = raw.IndexOf(',', p1) + 2;
-                var p3 = raw.LastIndexOf('|');
-                return raw.Substring(0, p2) + raw.Substring(p2, p3 - p2 + 1).Replace("\"", "") + raw.Substring(p3 + 1);
-            });
-            var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
-            specimen1 = rows[1].Cells;
+            var a = randomStringArray(255);
+            var b = copyStringArray(a);
+            var c = randomStringArray(255);
+            int h1 = new A.HashCode().GetFromCollection(a);
+            int h2 = new A.HashCode().GetFromCollection(b);
+            int h3 = new A.HashCode().GetFromCollection(c);
+            Assert.Equal(h1, h2);
+            Assert.NotEqual(h1, h3);
         }
         {
-            var reader = new CsvReader { HasHeader = true };
-            var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
-            specimen2 = rows[1].Cells;
+            var x = randomStringArray(255);
+            var y = randomStringArray(255);
+            var a = new Tuple<string[], string[]>(x, y);
+            var b = new Tuple<string[], string[]>(copyStringArray(x), copyStringArray(y));
+            var c = new Tuple<string[], string[]>(x, copyStringArray(x));
+            var h1 = new A.HashCode().GetFromComponents(a.Item1, a.Item2);
+            var h2 = new A.HashCode().GetFromComponents(b.Item1, b.Item2);
+            var h3 = new A.HashCode().GetFromComponents(c.Item1, c.Item2);
+            Assert.Equal(h1, h2);
+            Assert.NotEqual(h1, h3);
         }
-        Assert.Equal(6, specimen1.Length);
-        Assert.Equal(9, specimen2.Length);
     }
 
-    [Fact]
+    // FIXME: Move to Woof.Text unit tests.
+    //[/*Fun*/Fact]
+    //public void CsvReader() {
+    //    var assembly = GetType().Assembly;
+    //    string[] specimen1 = null;
+    //    string[] specimen2 = null;
+    //    {
+    //        var reader = new CsvReader { HasHeader = true };
+    //        reader.LinePreprocessor = new LinePreprocessorDelegate((raw) => {
+    //            var p1 = raw.IndexOf(',') + 1;
+    //            var p2 = raw.IndexOf(',', p1) + 2;
+    //            var p3 = raw.LastIndexOf('|');
+    //            return raw.Substring(0, p2) + raw.Substring(p2, p3 - p2 + 1).Replace("\"", "") + raw.Substring(p3 + 1);
+    //        });
+    //        var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
+    //        specimen1 = rows[1].Cells;
+    //    }
+    //    {
+    //        var reader = new CsvReader { HasHeader = true };
+    //        var rows = reader.Read(new Resource(assembly, "Resources\\Test.csv").Text).ToArray();
+    //        specimen2 = rows[1].Cells;
+    //    }
+    //    Assert.Equal(6, specimen1.Length);
+    //    Assert.Equal(9, specimen2.Length);
+    //}
+
+    [/*Fun*/Fact]
     public void ResourceExistence() {
         var assembly = GetType().Assembly;
         var rightPath = "Resources\\Logo.png";
@@ -43,7 +84,7 @@ public class UnitTests {
         Assert.False(Resource.Exists(assembly, wrongPath));
     }
 
-    [Fact]
+    [/*Fun*/Fact]
     public void ResourceEnumeration() {
         var assembly = GetType().Assembly;
         var pattern1 = "Resources\\*.png";
@@ -54,27 +95,27 @@ public class UnitTests {
         Assert.Empty(results2);
     }
 
-    [Fact]
+    [/*Fun*/Fact]
     public void ResourceAttachment() {
-        using (var client = new SmtpClient("smtp.gmail.com", 587) {
-            EnableSsl = true,
-            Credentials = new System.Net.NetworkCredential("beta63465@gmail.com", "v6GvLcF56zVWAfOFkvqP") // throwaway account, but please...
-        }) {
-            var image = new ResourceAttachment(GetType().Assembly, "Resources\\Logo.png", "testImage", DispositionTypeNames.Inline);
-            var html = "<h1>Hello.</h1><p>Woof! Here, take this CodeDog logo!</p><p><img src='cid:testImage'/>";
-            using (var message = new MailMessage() {
-                Sender = new MailAddress("🐕 <it@codedog.pl>"),
-                From = new MailAddress("🐕 <it@codedog.pl>"),
-                Subject = $"⚠ It's {DateTime.Now}. WOOF!",
-                Body = html,
-                BodyEncoding = Encoding.UTF8,
-                IsBodyHtml = true
-            }) {
-                message.To.Add(new MailAddress("it@codedog.pl"));
-                message.Attachments.Add(image);
-                //client.Send(message);
-            }
+        MailAddress spamTarget = null; // insert your e-mail address here!
+        using var message = new MailMessage() {
+            Sender = new MailAddress("🐕 <it@codedog.pl>"),
+            From = new MailAddress("🐕 <it@codedog.pl>"),
+            Subject = $"⚠ It's {DateTime.Now}. WOOF!",
+            Body = "<h1>Hello.</h1><p>Woof! Here, take this CodeDog logo!</p><p><img src='cid:testImage'/>",
+            BodyEncoding = Encoding.UTF8,
+            IsBodyHtml = true
+        };
+        message.Attachments.Add(new ResourceAttachment(GetType().Assembly, @"Resources\Logo.png", "testImage", DispositionTypeNames.Inline));
+        if (spamTarget != null) {
+            using var client = new SmtpClient("smtp.gmail.com", 587) {
+                EnableSsl = true,
+                Credentials = new System.Net.NetworkCredential("beta63465@gmail.com", "Dn5x,&DMOx5p6N#C.]v9hcSvHxaBy>_T") // throwaway account, but please...
+            };
+            message.To.Add(spamTarget);
+            client.Send(message);
         }
+
     }
-        
+
 }

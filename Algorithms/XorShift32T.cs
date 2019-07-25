@@ -99,7 +99,7 @@ namespace Woof.Algorithms {
         /// </summary>
         /// <param name="buffer">An array of bytes to contain random numbers.</param>
         unsafe public void NextBytes(byte[] buffer) {
-            int i = 0;
+            int i;
             int n = buffer.Length;
             int m = n >> 2;
             fixed (void* p = buffer) {

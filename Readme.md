@@ -1,9 +1,9 @@
-﻿# WOOF Toolkit
+﻿# Woof.Core 2.0
 
-**.NET Framework** extensions created by **[CodeDog Ltd.](http://codedog.pl)**
+**.NET Framework** extensions created by **[CodeDog Ltd.](https://codedog.pl)**
 
 Distributed under [MIT License](https://en.wikipedia.org/wiki/MIT_License).
-(c)2018 by CodeDog Ltd., All rights reserved.
+(c)2019 by CodeDog Ltd., All rights reserved.
 
 ---
 
@@ -15,7 +15,13 @@ Little code pearls, a part of what makes CodeDog special.
 
 ---
 
-## Modules
+## Modules (namespace: module list)
+- Algorithms: ArrayFisherYates, HashCode, Fast PRNG-s
+- AssemblyEx: AssemblyInfo.
+- Core: ApplicationDirectory, ExpandoObjectExtensions, MimeMapping, Resource, ResourceAttachment, XTemplate
+- SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, DiagnosticStream, Download, ExceptionEventArgs, IniFile, ItemEventArgs, Paged, PathTools, PercentEventArgs, TimeTrigger
+
+---
 
 ### Naming convention
 
@@ -28,12 +34,13 @@ or the name resolution in the project will break.
 
 Either nuget, or copy the cs files if single exe is necessary.
 
+## Testing
+
+Unit tests require .NET Core SDK 3.0.
+
 ---
 
 ## Disclaimer
-
-This is a development version of the toolkit.
-The files are only versioned under the project or solution they are included in.
 
 Please report any issues to the [toolkit developer](mailto:it@codedog.pl).
 

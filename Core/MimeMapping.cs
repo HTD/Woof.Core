@@ -10,7 +10,7 @@ namespace Woof.Core {
     /// </summary>
     public static class MimeMapping {
 
-        private static MimeMappingDictionaryBase _mappingDictionary = new MimeMappingDictionary();
+        private static readonly MimeMappingDictionaryBase _mappingDictionary = new MimeMappingDictionary();
 
         /// <summary>
         /// Gets the MIME type derived from file name.

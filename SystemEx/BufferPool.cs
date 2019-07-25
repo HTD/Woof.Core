@@ -17,16 +17,13 @@ namespace Woof.SystemEx {
         /// <summary>
         /// Actual buffer collection.
         /// </summary>
-        private ConcurrentBag<byte[]> Pool;
+        private readonly ConcurrentBag<byte[]> Pool = new ConcurrentBag<byte[]>();
 
         /// <summary>
         /// Creates new buffer pool with specified buffer size.
         /// </summary>
         /// <param name="size">Buffer size in bytes, default 1KB.</param>
-        public BufferPool(int size = 0x400) {
-            Size = size;
-            Pool = new ConcurrentBag<byte[]>();
-        }
+        public BufferPool(int size = 0x400) => Size = size;
 
         /// <summary>
         /// Gets a buffer from the pool.
