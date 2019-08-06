@@ -6,9 +6,13 @@ using System.Net.Mime;
 using System.Text;
 using Woof.Core;
 using Xunit;
+using Xunit.Abstractions;
 using A = Woof.Algorithms;
 
 public class UnitTests {
+
+    public UnitTests(ITestOutputHelper testOutputHelper) => Output = testOutputHelper;
+    private readonly ITestOutputHelper Output;
 
     [/*Fun*/Fact]
     public void HashCodes() {
@@ -47,6 +51,50 @@ public class UnitTests {
             Assert.Equal(h1, h2);
             Assert.NotEqual(h1, h3);
         }
+    }
+
+    [/*Fun*/Fact]
+    public void PRNG() {
+        var generators = new A.IPseudoRandomNumberGenerator[] {
+            new A.SysRandom(),
+            new A.XorShift32(),
+            new A.XorShift32T()
+        };
+        foreach (var prng in generators) {
+            PRNG_NextDouble(prng);
+            PRNG_NextBytes(prng);
+            PRNG_NextRange(prng);
+        }
+    }
+
+    private void PRNG_NextDouble(A.IPseudoRandomNumberGenerator prng) {
+        const int sampleSize = 256000;
+        var sample = new double[sampleSize];
+        for (int i = 0; i < sampleSize; i++) sample[i] = prng.NextDouble();
+        var min = sample.Min();
+        var max = sample.Max();
+        var avg = sample.Average();
+        Assert.InRange(min, 0, 0.0001);
+        Assert.InRange(max, 0.9999, 1);
+        Assert.InRange(avg, 0.49, 0.51);
+    }
+
+    private void PRNG_NextBytes(A.IPseudoRandomNumberGenerator prng) {
+        const int sampleSize = 256000;
+        var sample = new byte[sampleSize];
+        prng.NextBytes(sample);
+        var counter = new int[256];
+        foreach (var b in sample) counter[b]++;
+        foreach (var c in counter) Assert.InRange(c, 850, 1150);
+    }
+
+    private void PRNG_NextRange(A.IPseudoRandomNumberGenerator prng) {
+        const int sampleSize = 100000;
+        var sample = new int[sampleSize];
+        for (int i = 0; i < sampleSize; i++) sample[i] = prng.Next(1, 101);
+        var counter = new int[100];
+        foreach (var b in sample) counter[b - 1]++;
+        foreach (var c in counter) Assert.InRange(c, 850, 1150);
     }
 
     [/*Fun*/Fact]
