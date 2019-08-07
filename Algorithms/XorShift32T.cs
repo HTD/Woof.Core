@@ -41,7 +41,7 @@ namespace Woof.Algorithms {
             Seed ^= Seed << S1;
             Seed ^= Seed >> S2;
             Seed ^= Seed << S3;
-            return (int)(Seed / Max * max);
+            return (int)((Seed & Int32.MaxValue) / Max * max);
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Woof.Algorithms {
             Seed ^= Seed << S1;
             Seed ^= Seed >> S2;
             Seed ^= Seed << S3;
-            if (min == int.MinValue && max == int.MaxValue) return Seed;
-            return min + (int)((Seed & 0x7fffffff) / Max * ((double)max - (double)min));
+            if (min == int.MinValue && max == Int32.MaxValue) return Seed;
+            return min + (int)((Seed & Int32.MaxValue) / Max * ((double)max - (double)min));
         }
 
         /// <summary>

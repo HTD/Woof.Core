@@ -27,7 +27,7 @@ namespace Woof.Algorithms {
             Seed ^= Seed << S1;
             Seed ^= Seed >> S2;
             Seed ^= Seed << S3;
-            return unchecked((int)(Seed & 0x7fffffff));
+            return (int)(Seed & Int32.MaxValue);
         }
 
         /// <summary>
