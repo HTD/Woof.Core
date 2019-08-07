@@ -12,9 +12,7 @@ AssemblyEx: AssemblyInfo.
 Core: ApplicationDirectory, ExpandoObjectExtensions, MimeMapping, Resource, ResourceAttachment, XTemplate
 SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, DiagnosticStream, Download, ExceptionEventArgs, IniFile, ItemEventArgs, Paged, PathTools, PercentEventArgs, TimeTrigger</Description>
     <Copyright>(c)2018 by CodeDog Ltd</Copyright>
-    <PackageReleaseNotes>FIX: XorShift32 and XorShift32T bugs.
-ADD: BoxMuller transform.
-ADD: Basic PRNG tests.</PackageReleaseNotes>
+    <PackageReleaseNotes>FIX: PRNGs, BoxMuller, TESTED</PackageReleaseNotes>
     <AssemblyVersion>2.2.0.0</AssemblyVersion>
     <FileVersion>2.2.0.0</FileVersion>
     <Version>2.2.0</Version>
