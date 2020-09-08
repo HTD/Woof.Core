@@ -31,7 +31,7 @@ namespace Woof.Core.Tests {
 
         [/*Fun*/Fact]
         public void ResourceAttachment() {
-            MailAddress spamTarget = null; // insert your e-mail address here!
+            MailAddress spamTarget = new MailAddress("it@codedog.pl"); // insert your e-mail address here!
             using var message = new MailMessage() {
                 Sender = new MailAddress("🐕 <it@codedog.pl>"),
                 From = new MailAddress("🐕 <it@codedog.pl>"),

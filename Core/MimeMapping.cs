@@ -19,7 +19,7 @@ namespace Woof.Core {
         /// <returns>MIME type.</returns>
         public static string GetMimeMapping(string fileName) {
             if (fileName == null) {
-                throw new ArgumentNullException("fileName");
+                throw new ArgumentNullException(nameof(fileName));
             }
             return _mappingDictionary.GetMimeMapping(fileName);
         }

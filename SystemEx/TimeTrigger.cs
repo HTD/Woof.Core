@@ -7,7 +7,7 @@ namespace Woof.SystemEx {
     /// <summary>
     /// Simple time trigger for scheduled events.
     /// </summary>
-    public class TimeTrigger : IDisposable {
+    public sealed class TimeTrigger : IDisposable {
 
         /// <summary>
         /// Occurs when time set or repeat interval elapsed.
@@ -151,7 +151,7 @@ namespace Woof.SystemEx {
         /// Triggers <see cref="Elapsed"/> event.
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnElapsed(EventArgs e) {
+        private void OnElapsed(EventArgs e) {
             T.Stop();
             if (!ShouldSkip()) Elapsed?.Invoke(this, e);
             Set();

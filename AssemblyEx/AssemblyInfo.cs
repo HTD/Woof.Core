@@ -39,47 +39,47 @@ namespace Woof.AssemblyEx {
         /// <summary>
         /// Name (suitable for event source)
         /// </summary>
-        public string Name => _Name ?? (_Name = A.GetName().Name);
+        public string Name => _Name ??= A.GetName().Name;
 
         /// <summary>
         /// Title (suitable for displayed service name)
         /// </summary>
-        public string Title => _Title ?? (_Title = (A.GetCustomAttribute<AssemblyTitleAttribute>().Title));
+        public string Title => _Title ??= (A.GetCustomAttribute<AssemblyTitleAttribute>()?.Title);
 
         /// <summary>
         /// Description (suitable for service description)
         /// </summary>
-        public string Description => _Description ?? (_Description = (A.GetCustomAttribute<AssemblyDescriptionAttribute>().Description));
+        public string Description => _Description ??= (A.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description);
 
         /// <summary>
         /// Company name
         /// </summary>
-        public string Company => _Company ?? (_Company = (A.GetCustomAttribute<AssemblyCompanyAttribute>().Company));
+        public string Company => _Company ??= (A.GetCustomAttribute<AssemblyCompanyAttribute>()?.Company);
 
         /// <summary>
         /// Internal product name (suitable as service name identifier)
         /// </summary>
-        public string Product => _Product ?? (_Product = (A.GetCustomAttribute<AssemblyProductAttribute>().Product));
+        public string Product => _Product ??= (A.GetCustomAttribute<AssemblyProductAttribute>()?.Product);
 
         /// <summary>
         /// Copyright information
         /// </summary>
-        public string Copyright => _Copyright ?? (_Copyright = (A.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright));
+        public string Copyright => _Copyright ??= (A.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright);
 
         /// <summary>
         /// Trademark
         /// </summary>
-        public string Trademark => _Trademark ?? (_Trademark = (A.GetCustomAttribute<AssemblyTrademarkAttribute>().Trademark));
+        public string Trademark => _Trademark ??= (A.GetCustomAttribute<AssemblyTrademarkAttribute>()?.Trademark);
 
         /// <summary>
         /// Version
         /// </summary>
-        public Version Version => _Version ?? (_Version = A.GetName().Version);
+        public Version Version => _Version ??= A.GetName().Version;
 
         /// <summary>
         /// Main program namespace
         /// </summary>
-        public string Namespace => _Namespace ?? (_Namespace = A.EntryPoint.ReflectedType.Namespace);
+        public string Namespace => _Namespace ??= A.EntryPoint.ReflectedType.Namespace;
 
         #endregion
 

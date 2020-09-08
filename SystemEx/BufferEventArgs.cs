@@ -10,6 +10,7 @@ namespace Woof.SystemEx {
         /// <summary>
         /// Gets send / receive buffer.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "It's writeable anyway.")]
         public byte[] Buffer { get; set; }
 
         /// <summary>

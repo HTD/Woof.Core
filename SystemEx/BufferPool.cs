@@ -39,8 +39,8 @@ namespace Woof.SystemEx {
         /// </summary>
         /// <param name="buffer"></param>
         public void Put(byte[] buffer) {
-            if (buffer == null) throw new ArgumentNullException("buffer");
-            if (buffer.Length != Size) throw new ArgumentOutOfRangeException("buffer");
+            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
+            if (buffer.Length != Size) throw new ArgumentOutOfRangeException(nameof(buffer));
             Array.Clear(buffer, 0, Size);
             Pool.Add(buffer);
         }

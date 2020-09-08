@@ -12,10 +12,10 @@ AssemblyEx: AssemblyInfo.
 Core: ApplicationDirectory, ExpandoObjectExtensions, MimeMapping, Resource, ResourceAttachment, XTemplate
 SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, DiagnosticStream, Download, ExceptionEventArgs, IniFile, ItemEventArgs, Paged, PathTools, PercentEventArgs, TimeTrigger</Description>
     <Copyright>(c)2018 by CodeDog Ltd</Copyright>
-    <PackageReleaseNotes>FIX: PRNGs, BoxMuller, TESTED</PackageReleaseNotes>
-    <AssemblyVersion>2.2.0.0</AssemblyVersion>
-    <FileVersion>2.2.0.0</FileVersion>
-    <Version>2.2.0</Version>
+    <PackageReleaseNotes>FIX: Assembly info properties null checks.</PackageReleaseNotes>
+    <AssemblyVersion>2.2.1.0</AssemblyVersion>
+    <FileVersion>2.2.1.0</FileVersion>
+    <Version>2.2.1</Version>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Core</PackageProjectUrl>
     <PackageTags>code core codedog dotnet system</PackageTags>
@@ -23,6 +23,7 @@ SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, D
     <Product>Woof.Core</Product>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <LangVersion>latest</LangVersion>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,6 +41,10 @@ SystemEx: BufferEventArgs, BufferPool, CommandLineArguments, DateRange, DGuid, D
     <Compile Remove="Tests\**" />
     <EmbeddedResource Remove="Tests\**" />
     <None Remove="Tests\**" />
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -88,7 +88,7 @@ namespace Woof.SystemEx {
         /// <param name="fileName">File name.</param>
         /// <returns>True if the file is accessible.</returns>
         public static bool IsFileAcessibleInPath(string fileName) =>
-            fileName == null ? false : (
+            fileName != null && (
                 GetPath(EnvironmentVariableTarget.User).Select(i => Path.Combine(i, fileName)).Any(i => File.Exists(i))
                     ||
                 GetPath(EnvironmentVariableTarget.Machine).Select(i => Path.Combine(i, fileName)).Any(i => File.Exists(i))

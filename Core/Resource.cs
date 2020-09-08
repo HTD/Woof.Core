@@ -34,8 +34,8 @@ namespace Woof.Core {
         /// </summary>
         public XDocument Document {
             get {
-                using (var stream = AssemblyReference.GetManifestResourceStream(AssemblyPath))
-                    return XDocument.Load(stream);
+                using var stream = AssemblyReference.GetManifestResourceStream(AssemblyPath);
+                return XDocument.Load(stream);
             }
         }
 

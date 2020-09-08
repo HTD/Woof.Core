@@ -6,7 +6,7 @@ namespace Woof.SystemEx {
     /// <summary>
     /// HTTP responsive file downloader.
     /// </summary>
-    public class Download : IDisposable {
+    public sealed class Download : IDisposable {
 
         /// <summary>
         /// Occurs when download progress is changed by at least 1%.

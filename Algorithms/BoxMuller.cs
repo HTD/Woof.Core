@@ -128,7 +128,7 @@ namespace Woof.Algorithms {
         /// <returns>Integer from [min..max).</returns>
         private static int NFSI(double normal, int min, int max, double sdc = 2.0, double mc = -0.5) {
             if (min == max) return min;
-            if (min > max) throw new ArgumentException("min > max", "min");
+            if (min > max) throw new ArgumentException("min > max", nameof(min));
             var limit = max - min;
             return min + NFSI(normal, limit, sdc, mc);
         }
